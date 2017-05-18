@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>角色权限管理</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript"  src="js/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".click").click(function(){
+  $(".tip").fadeIn(200);
+  });
+  
+  $(".tiptop a").click(function(){
+  $(".tip").fadeOut(200);
+});
+
+  $(".sure").click(function(){
+  $(".tip").fadeOut(100);
+});
+
+  $(".cancel").click(function(){
+  $(".tip").fadeOut(100);
+});
+
+});
+</script>
+<!--删除-->
+<script type="text/javascript">
+    var row = 0 ; //定义全局行数用于修改
+//----获取行号-----
+function getRow(r){
+ var i=r.parentNode.parentNode.rowIndex; 
+ return i ;
+}
+//----获取行号-----
+ 
+//----删除某一行-----
+function isDel() {
+      return confirm("删除不可恢复，是否删除该选项？");
+  }
+function delRow(r){
+    var a = isDel();
+    if (a==true) {
+    document.getElementById('table').deleteRow(getRow(r));};
+} 
+
+</script>
+<!--查看-->
+<script type="text/javascript">
+function showBg() { 
+        var bh = $("body").height(); 
+        var bw = $("body").width(); 
+        //$("#fullbg").css({ 
+          // height:bh, 
+           //width:bw, 
+           //display:"block" 
+        //}); 蒙版
+        $("#dialog").show();
+             } 
+
+//----取消----
+function hideAddInput(){
+      $("#dialog").hide(); 
+      $("#dialog1").hide();
+}
+//----新建----
+function creatN() { 
+        var bh = $("body").height(); 
+        var bw = $("body").width(); 
+  
+        $("#dialog1").show();
+             }
+//---更多--
+ function showHideCode(){
+             $("#showdiv").toggle();
+          }
+</script>
+</head>
+
+
+<body>
+    <div id="dialog">
+        <div class="container-fluid">
+            <div class="closeBg ">
+                <a class="font" >编辑</a>
+            </div>
+             <ul class="forminfo">
+            <li><label>角色</label><input name="" type="text" class="dfinput" id="statue " /></li>
+            <li><label>权限</label><input name="" type="text" class="dfinput" id="power" /></li>
+            <div class="buttonall">
+            <input type="button" value="保存" onclick="updateInfo()" id="btn_update">
+            <input type="button" value="取消" onclick="hideAddInput()" id="btn_hide">
+            </div>
+            </ul>
+        </div>
+    </div>
+    <div id="dialog1">
+        <div class="container-fluid">
+            <div class="closeBg ">
+                <a class="font" >新建</a>
+            </div>
+             <ul class="forminfo">
+            <li><label>角色</label><input name="" type="text" class="dfinput" id="statue " /></li>
+            <li><label>权限</label><input name="" type="text" class="dfinput" id="power" /></li>
+            <div class="buttonall">
+            <input type="button" value="保存" onclick="updateInfo()" id="btn_update">
+            <input type="button" value="取消" onclick="hideAddInput()" id="btn_hide">
+            </div>
+            </ul>
+        </div>
+    </div>
+
+    <div class="rightinfo">   
+    <ul class="seachform1">
+    <li>
+    	<i class="icon-search"></i>
+    	<input name="" type="text" class="scinput1" placeholder="请输入角色名" /></li>
+    <li class="sarchbtn">
+    	<li class="sarchbtn1"> 
+    	<input name="" type="button" class="scbtn2" value="新建" onclick="creatN(this)"/>  
+    	<input name="" type="submit" class="scbtn1" value="保存"/> 
+    	<input name="" type="button" class="scbtn2" value="删除"/>
+    	</li>
+    </li> 
+    </ul>
+    <table class="tablelist" id="table">
+    	<tr>
+    	<th style="width:20px;"></th>
+        <th style="width:40px;">编号</th>
+        <th style="width:80px;">角色</th>
+        <th style="width:100px;">权限</th>
+        <th style="width:60px;">操作</th>
+        <th style="width:100px;"></th>
+        </tr>
+        <tr>
+        <td><input name="" type="checkbox" value="" /></td>
+        <td>20130908</td>
+        <td></td>
+        <td>
+        <div>
+                       创建问卷、发布问卷、<div id = "showdiv" style="display:none;">操作（新建、删除、修改)、调查员信息、操作（新建、删除、修改）</div>
+        <a herf="#"class="tablelink" onclick="showHideCode()" > 更多</a>
+        </div>
+	    </td>
+        <td><a herf="#" class="tablelink1" onclick="showBg(this)">编辑</a> 
+        	<a herf="#"class="tablelink" onclick="delRow(this)" > 删除</a></td>
+        <td></td>
+        </tr>      
+    </table>
+    
+    </div>
+  
+
+</body>
+
+</html>
+
